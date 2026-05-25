@@ -1,0 +1,286 @@
+============================================================
+        IMAGE TO JPEG CONVERTER — HOW TO USE
+                  (Full-Featured Edition)
+============================================================
+
+REQUIREMENTS
+------------------------------------------------------------
+- Python        : Version 3.6 or higher
+                  Download: https://www.python.org/downloads
+                  ⚠ During install, check "Add Python to PATH"
+
+- Operating System : Windows, macOS, or Linux
+
+The following libraries are AUTO-INSTALLED on first run.
+You do not need to install them manually:
+
+  • Pillow         — Image processing and conversion
+  • PyMuPDF        — Extract images from PDF files
+  • python-docx    — Extract images from Word documents
+  • python-pptx    — Extract images from PowerPoint files
+  • openpyxl       — Extract images from Excel files
+  • tkinterdnd2    — Drag and drop support
+
+
+HOW TO RUN
+------------------------------------------------------------
+Open a terminal (Command Prompt / PowerShell / Terminal)
+and navigate to the folder containing the script, then run:
+
+  Windows:       py convert_to_jpeg.py
+  macOS/Linux:   python3 convert_to_jpeg.py
+
+
+============================================================
+  THE INTERFACE — SECTION BY SECTION
+============================================================
+
+  ┌─────────────────────────────────────────┐
+  │              HEADER                     │
+  │         SELECTED IMAGES                 │
+  │         OUTPUT SETTINGS                 │
+  │         IMAGE SETTINGS                  │
+  │             PROGRESS                    │
+  │  [Convert to JPEG] [Cancel] [Open Output]│
+  └─────────────────────────────────────────┘
+
+
+── HEADER ──────────────────────────────────────────────────
+
+  The top bar shows the app title and subtitle.
+
+  🌙 Dark / ☀ Light  (top right corner)
+    Toggles between Sage & Slate light mode and dark mode.
+    The entire app — header, panels, buttons, lists —
+    updates instantly.
+
+
+── SELECTED IMAGES ─────────────────────────────────────────
+
+  The main file list. Shows a thumbnail, filename, and
+  source folder path for every image queued for conversion.
+  Supports both vertical AND horizontal scrolling.
+
+  ➕ Add Images
+    Opens a file picker. Select one or multiple image
+    files to add to the list.
+    Supported formats:
+      PNG, JPG, BMP, GIF, TIFF, WEBP, ICO, PPM, TGA,
+      HEIC, HEIF
+
+  📂 Import File
+    Opens a file picker for documents. The app extracts
+    all embedded images and adds them to the list in order.
+    Supported file types:
+      • PDF   — images extracted page by page (page 1 first)
+      • DOCX  — images extracted in document reading order
+      • PPTX  — images extracted slide by slide
+      • XLSX  — images extracted sheet by sheet
+      • ZIP / CBZ — all image files inside, alphabetically
+
+  ↑ Up / ↓ Down
+    Move the selected file(s) up or down in the list.
+    List order = output order:
+      1st item → Image_1.jpg
+      2nd item → Image_2.jpg  (and so on)
+
+  ✕ Remove
+    Removes the selected file(s) from the list.
+    Hold Ctrl (or Cmd on Mac) to multi-select.
+
+  🗑 Clear All
+    Removes every file from the list at once.
+
+  File count  (right side of button row)
+    Shows how many files are currently queued, including
+    any duplicates.
+
+  ── Drag & Drop ──────────────────────────────────────────
+    Drag directly onto the file list:
+      • Single or multiple image files
+      • Entire folders (all images inside are added)
+      • Document files: PDF, DOCX, PPTX, XLSX, ZIP
+        (images are extracted automatically on drop)
+
+  ── Duplicate images ─────────────────────────────────────
+    Adding the same image more than once is allowed.
+    Each copy converts independently and gets its own
+    sequential output name.
+
+
+── OUTPUT SETTINGS ─────────────────────────────────────────
+
+  Folder:
+    Where converted JPEGs are saved.
+    Click Browse… to choose a folder.
+    ⚠ Required — conversion will not start without a
+    valid output folder.
+    Click Clear to reset the selection.
+
+  Prefix:
+    The base name for all output files. Default: "Image"
+
+    Examples:
+      Prefix "Image"   → Image_1.jpg, Image_2.jpg…
+      Prefix "Photo"   → Photo_1.jpg, Photo_2.jpg…
+      Prefix "Scan"    → Scan_1.jpg,  Scan_2.jpg…
+
+    The hint text next to the field shows a live preview.
+
+    Duplicate filenames are handled automatically — if a
+    file already exists in the output folder, a counter
+    is appended so nothing gets overwritten.
+
+
+── IMAGE SETTINGS ──────────────────────────────────────────
+
+  Quality slider  (10 – 100):
+    Controls JPEG compression quality.
+
+      10–49  →  Low      (smallest file, visible artifacts)
+      50–74  →  Medium   (balanced size and quality)
+      75–94  →  High     (recommended — default is 90)
+      95–100 →  Maximum  (largest file, best quality)
+
+    The label updates live as you drag the slider.
+
+  ── Transparency note ────────────────────────────────────
+    Images with transparency (PNG, WEBP with alpha, GIF)
+    are automatically composited onto a white background.
+    JPEG does not support transparency so this is required.
+
+
+── PROGRESS ────────────────────────────────────────────────
+
+  Progress bar:
+    Fills left to right as each file converts.
+    Conversion runs in a background thread — the app
+    stays responsive during large batches.
+
+  Log:
+    Live result for each file:
+      ✔  image.png  →  Image_1.jpg    (converted)
+      ✘  image.png  —  Error: ...     (failed)
+    A summary line appears at the end of every batch.
+
+
+── BOTTOM BUTTONS ──────────────────────────────────────────
+
+  Convert to JPEG  (dark slate, full width)
+    Starts converting all files in the list.
+    Requires at least one image AND a valid output folder.
+    A summary popup appears when the batch is complete.
+
+  ✕ Cancel  (red)
+    Stops the conversion after the current file finishes.
+    Already-converted files are kept.
+    Only active during a running conversion.
+
+  Open Output  (sage green)
+    Opens the output folder in your system file manager.
+    (Windows Explorer / macOS Finder / Linux file manager)
+    Becomes clickable after a successful conversion.
+
+
+============================================================
+  STEP-BY-STEP USAGE
+============================================================
+
+STEP 1 — ADD YOUR FILES
+  Option A: Click ➕ Add Images → pick image files
+  Option B: Click 📂 Import File → pick PDF/DOCX/PPTX/
+            XLSX/ZIP → images extracted automatically
+  Option C: Drag and drop files or folders onto the list
+
+STEP 2 — REORDER (optional)
+  Select a file and click ↑ Up or ↓ Down to set the order.
+  The top of the list = Image_1.jpg.
+
+STEP 3 — SELECT OUTPUT FOLDER
+  Click Browse… and choose a destination folder.
+
+STEP 4 — SET PREFIX (optional)
+  Change "Image" to whatever naming you prefer.
+
+STEP 5 — ADJUST QUALITY (optional)
+  Drag the quality slider. 90 is recommended for most use.
+
+STEP 6 — CONVERT
+  Click Convert to JPEG.
+  Watch the progress bar and log update in real time.
+
+STEP 7 — VIEW YOUR FILES
+  Click Open Output to jump straight to the folder.
+
+
+============================================================
+  TIPS & NOTES
+============================================================
+
+Order matters
+  Use ↑ ↓ to arrange your list before converting. The
+  first item in the list is always Image_1.jpg.
+
+No file limit
+  There is no cap on how many files you can add. Large
+  batches (500+) may take a few minutes but the app stays
+  responsive throughout.
+
+Re-running the same batch
+  If you convert again to the same output folder, existing
+  files are never overwritten. New files receive a higher
+  number to avoid conflicts.
+
+Temp files
+  Files extracted via Import File or drag & drop of
+  documents are stored in a temporary folder. These are
+  automatically cleaned up when you close the app.
+
+Window resizing
+  The app is fully resizable. Drag the corners to make
+  it larger — the file list expands to fill available space.
+
+
+============================================================
+  TROUBLESHOOTING
+============================================================
+
+"Python was not found" on Windows:
+  → Try:  py convert_to_jpeg.py
+  → Or disable the Microsoft Store alias:
+     Settings → Apps → Advanced app settings
+     → App execution aliases → turn OFF python.exe
+
+Libraries fail to install on first run:
+  → Install them manually in your terminal:
+     pip install Pillow pymupdf python-docx python-pptx openpyxl tkinterdnd2
+  → Or with py:
+     py -m pip install Pillow pymupdf python-docx python-pptx openpyxl tkinterdnd2
+
+"No images found" after Import File:
+  → The document may not contain raster images. Some PDFs
+     use vector graphics only — these cannot be extracted
+     as JPEGs with this tool.
+
+A specific file fails to convert:
+  → Check the log for the error message. The file may be
+     corrupted or an unsupported variant.
+     Try opening it in another app to verify it works.
+
+Drag & drop not working:
+  → Make sure tkinterdnd2 installed successfully.
+  → On macOS, you may need to grant the terminal
+     accessibility permissions in System Preferences.
+
+
+============================================================
+  BUILDING AS A STANDALONE APP
+============================================================
+
+To distribute the converter without requiring Python,
+see the companion file:  HOW_TO_BUILD_APP.txt
+
+  Windows  →  produces  ImageToJPEG.exe
+  macOS    →  produces  ImageToJPEG.app
+
+============================================================

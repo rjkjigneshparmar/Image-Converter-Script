@@ -1,0 +1,160 @@
+============================================================
+     HOW TO BUILD IMAGE TO JPEG CONVERTER AS AN APP
+============================================================
+
+IMPORTANT NOTE
+------------------------------------------------------------
+The Python script (convert_to_jpeg.py) is the same for
+both platforms. However, the app must be BUILT on the
+same OS you want it to run on:
+
+  ✔ Build on Windows  →  produces  ImageToJPEG.exe
+  ✔ Build on Mac      →  produces  ImageToJPEG.app
+
+  ✘ You CANNOT build a Mac app on Windows, or vice versa.
+
+
+============================================================
+  WINDOWS — BUILD AN .EXE
+============================================================
+
+REQUIREMENTS
+------------------------------------------------------------
+- Python 3.6+  →  https://www.python.org/downloads
+  ⚠ During install, check "Add Python to PATH"
+- PyInstaller  (installed in Step 1 below)
+
+
+STEP-BY-STEP
+------------------------------------------------------------
+1. INSTALL PYINSTALLER
+   Open Command Prompt or PowerShell and run:
+
+     pip install pyinstaller
+
+2. NAVIGATE TO YOUR SCRIPT FOLDER
+   Replace the path with where your script is saved:
+
+     cd C:\Users\YourName\Downloads
+
+3. BUILD THE EXE
+
+     pyinstaller --onefile --windowed --name "ImageToJPEG" convert_to_jpeg.py
+
+4. FIND YOUR EXE
+   After the build completes, look in the new "dist" folder:
+
+     dist\ImageToJPEG.exe
+
+   Double-click it to run — no Python installation needed!
+
+
+TROUBLESHOOTING (Windows)
+------------------------------------------------------------
+App doesn't open / crashes silently:
+  → Remove --windowed flag to see error messages:
+     pyinstaller --onefile --name "ImageToJPEG" convert_to_jpeg.py
+
+"pip is not recognized" error:
+  → Try:  py -m pip install pyinstaller
+
+Antivirus flags the .exe:
+  → This is a false positive common with PyInstaller apps.
+     Add an exception in your antivirus settings.
+
+
+============================================================
+  MAC — BUILD A .APP
+============================================================
+
+REQUIREMENTS
+------------------------------------------------------------
+- Python 3.6+  →  https://www.python.org/downloads
+  (or via Homebrew: brew install python)
+- PyInstaller  (installed in Step 1 below)
+- tkinter      →  if missing, run: brew install python-tk
+
+
+STEP-BY-STEP
+------------------------------------------------------------
+1. INSTALL PYINSTALLER
+   Open Terminal and run:
+
+     pip3 install pyinstaller
+
+2. NAVIGATE TO YOUR SCRIPT FOLDER
+   Replace the path with where your script is saved:
+
+     cd ~/Downloads
+
+3. BUILD THE .APP
+
+     pyinstaller --onefile --windowed --name "ImageToJPEG" convert_to_jpeg.py
+
+4. FIND YOUR .APP
+   After the build completes, look in the new "dist" folder:
+
+     dist/ImageToJPEG.app
+
+   You can drag it to your Applications folder like any
+   normal Mac app.
+
+
+TROUBLESHOOTING (Mac)
+------------------------------------------------------------
+"App can't be opened because it's from an unidentified developer":
+  → Right-click the app → click Open → click Open anyway
+  → Or run in Terminal:
+       xattr -cr dist/ImageToJPEG.app
+
+"ModuleNotFoundError: No module named tkinter":
+  → Run:  brew install python-tk
+
+App crashes silently:
+  → Remove --windowed to see errors in Terminal:
+       pyinstaller --onefile --name "ImageToJPEG" convert_to_jpeg.py
+
+"command not found: brew":
+  → Install Homebrew first:
+       /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+
+============================================================
+  WHAT THE BUILD FLAGS MEAN
+============================================================
+
+  --onefile    Packages everything into a single file
+               (.exe or .app) instead of a folder
+
+  --windowed   Hides the black terminal/console window
+               when the app is running (GUI only)
+
+  --name       Sets the name of the output file
+
+
+============================================================
+  FOLDER STRUCTURE AFTER BUILD
+============================================================
+
+  After running PyInstaller, these folders are created:
+
+  build/        →  Temporary build files (can be deleted)
+  dist/         →  YOUR FINAL APP IS HERE ✔
+  *.spec        →  Build config file (can be reused)
+
+  Only the file inside  dist/  needs to be shared.
+
+
+============================================================
+  SHARING YOUR APP
+============================================================
+
+  Windows:  Share the  dist\ImageToJPEG.exe  file.
+            Recipients do NOT need Python installed.
+
+  Mac:      Share the  dist\ImageToJPEG.app  folder.
+            Recipients do NOT need Python installed.
+            Tip: Zip it first for easy sharing:
+            Right-click ImageToJPEG.app → Compress
+
+============================================================
