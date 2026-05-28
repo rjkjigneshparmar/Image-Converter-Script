@@ -30,15 +30,7 @@ A full-featured desktop application for batch converting images of any format to
 | **Documents** | PDF, DOCX, PPTX, XLSX, ZIP, CBZ |
  
 ---
- 
-## 🖥 Screenshots
- 
-| Light Mode | Dark Mode |
-|------------|-----------|
-| ![Light](screenshots/light.png) | ![Dark](screenshots/dark.png) |
- 
----
- 
+  
 ## ⚙️ Requirements
  
 - **Python 3.6 or higher**
