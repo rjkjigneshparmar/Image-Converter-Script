@@ -1,4 +1,4 @@
-**Image → JPEG Converter**
+## **Image → JPEG Converter**
 
 A full-featured desktop application for batch converting images of any format to JPEG. Built with Python and Tkinter — works on Windows, macOS, and Linux.
 
